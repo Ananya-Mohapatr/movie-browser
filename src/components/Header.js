@@ -8,7 +8,12 @@ const Header = () => {
 Header
 
     </div>
-    <img src={bgImg} className='bgImgg'/>
+    <div style={{position:'relative'}}>
+    {/* <img src={bgImg} className='bgImgg'/> */}
+    <div clasName='card'>
+        Hello
+    </div>
+    </div>
     </div>
   )
 }
