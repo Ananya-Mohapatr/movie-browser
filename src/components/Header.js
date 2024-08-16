@@ -38,7 +38,8 @@ Header
     {/* <img src={bgImg} className='bgImgg'/> */}
     {movieList.map((i)=>{
       return (<div className='card' >
-        <b>{i.title || i.name}</b></div>)
+        <b>{i.title || i.name}</b>
+        </div>)
     })}
     </div>
     </div>
