@@ -10,3 +10,23 @@
     height: stretch;
 
 }
+.container{
+    display: 'grid';
+    grid-template-columns: 'auto auto auto auto';
+}
+.card{
+    padding:10px;
+    border: 1px solid grey;
+    margin:10px;
+    border-radius:0.5rem;
+    box-shadow:0 4px 8px 0 rgba(0,0,0,0.2)
+}
+@media screen and (max-width:480px) {
+.container{
+    display:block
+}
+.card{
+    display:block
+}
+    
+}
