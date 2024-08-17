@@ -2,8 +2,12 @@ import React,{useState,useEffect} from 'react'
 import {ACCOUNT_ID,API_READ_ACCESS_TOKEN,API_URL} from '../utils/Constant'
 import './Header.css'
 import bgImg from '../assets/background-image.png'
+import fav from '../assets/bookmark_2107915.png'
+import ReadMorePopUp from '../modals/ReadMorePopUp'
 const Header = () => {
   const [movieList,setMovieList] = useState([])
+  const [open,setOpen] = useState(false)
+  const [overview,setOverview] = useState("")
   const fetchMovieList = async()=>{
     let account_id = ACCOUNT_ID
     let res = 
@@ -24,7 +28,14 @@ const Header = () => {
     .catch(err=>console.log("error",err))
   }
   
-  
+  const openPopup = (data)=>{
+    console.log("hello")
+    setOpen(true)
+    setOverview(data)
+  }
+  const closePopup=()=>{
+   setOpen(false)
+  }
   useEffect(()=>{
     fetchMovieList()
   },[])
@@ -38,10 +49,17 @@ Header
     {/* <img src={bgImg} className='bgImgg'/> */}
     {movieList.map((i)=>{
       return (<div className='card' >
-        <b>{i.title || i.name}</b>
+        <div><b>{i.title || i.name} ({i?.release_date?.toString().slice(0,4) || i?.first_air_date?.toString().slice(0,4)})</b><img src={fav} style={{height:'25px',float:'right'}}/></div>
+        <img src={'https://image.tmdb.org/t/p/w220_and_h330_face'+i.poster_path} className='img'/>
+        <p>{i.overview.length<50 ?i.overview : i.overview.substr(0,80)+"..."}</p>{i.overview.length>80?<button style={{'color':'blue'}} onClick={()=>openPopup(i.overview)} >Read More</button>:''}
         </div>)
     })}
     </div>
+    {open &&
+        <ReadMorePopUp
+        data={overview}
+        callBack={closePopup}/>
+}
     </div>
   )
 }
