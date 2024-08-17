@@ -2,7 +2,7 @@ import React,{useState,useEffect} from 'react'
 import {ACCOUNT_ID,API_READ_ACCESS_TOKEN,API_URL} from '../utils/Constant'
 import './Header.css'
 import bgImg from '../assets/background-image.png'
-import fav from '../assets/bookmark_2107915.png'
+import fav from '../assets/bookmark_13484736.png'
 import ReadMorePopUp from '../modals/ReadMorePopUp'
 const Header = () => {
   const [movieList,setMovieList] = useState([])
