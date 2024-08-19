@@ -3,4 +3,22 @@
     height: 50px;
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,9,121,1) 21%, rgba(0,212,255,1) 93%);
     color: white;
+    display: flex;
+    justify-content: space-between;
+}
+input{
+    margin:10px;
+    width:20%;
+    border-radius: 0.4rem;
+    /* background-color: white; */
+    /* background-image: url('../assets/94156_search_512x512.png'); */
+}
+input:hover{
+    border:none;
+}
+.searchImg{
+    position:absolute;
+    height:5%;
+    margin:10px;
+    left:64%
 }

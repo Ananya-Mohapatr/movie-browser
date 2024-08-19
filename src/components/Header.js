@@ -3,7 +3,7 @@ import {ACCOUNT_ID,API_READ_ACCESS_TOKEN,API_URL} from '../utils/Constant'
 import './Header.css'
 import bgImg from '../assets/background-image.png'
 import notBookmarked from '../assets/bookmark_2107915.png'
-import bookmarked from '../assets/bookmark_2107725.png'
+import bookmarkedImg from '../assets/bookmark_2107725.png'
 import ReadMorePopUp from '../modals/ReadMorePopUp'
 const Header = () => {
   const [movieList,setMovieList] = useState([])
@@ -33,7 +33,6 @@ const Header = () => {
   }
   
   const openPopup = (data)=>{
-    console.log("hello")
     setOpen(true)
     setOverview(data)
   }
@@ -41,10 +40,11 @@ const Header = () => {
    setOpen(false)
   }
   const handleBookmark = (id)=>{
+    // let newList = movieList.map((element)=>element.id == id ? {...element,bookmarked:!element.bookmarked,bookmarkedImg:element.bookmarked?bookmarkedImg:notBookmarked}:element)
     let newList = movieList.map((i)=>{
       if(i.id === id ){
         i.bookmarked = !i.bookmarked
-        i.bookmarkedImg = i.bookmarked ? bookmarked : notBookmarked
+        i.bookmarkedImg = i.bookmarked ? bookmarkedImg : notBookmarked
       }
       return i
       
