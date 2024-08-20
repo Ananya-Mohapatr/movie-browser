@@ -5,10 +5,15 @@ import bgImg from '../assets/background-image.png'
 import notBookmarked from '../assets/bookmark_2107915.png'
 import bookmarkedImg from '../assets/bookmark_2107725.png'
 import ReadMorePopUp from '../modals/ReadMorePopUp'
+import { useDispatch, useSelector } from 'react-redux'
+import { addItems, removeItem } from '../utils/Slice'
 const Header = () => {
+  const dispatch = useDispatch()
   const [movieList,setMovieList] = useState([])
   const [open,setOpen] = useState(false)
   const [overview,setOverview] = useState("")
+  var item = useSelector((store)=>store.slice.items)
+  console.log("items",item)
   const fetchMovieList = async()=>{
     await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${API_READ_ACCESS_TOKEN}`,{
             method:'GET',
@@ -44,7 +49,14 @@ const Header = () => {
     let newList = movieList.map((i)=>{
       if(i.id === id ){
         i.bookmarked = !i.bookmarked
-        i.bookmarkedImg = i.bookmarked ? bookmarkedImg : notBookmarked
+        if(i.bookmarked){
+          dispatch(addItems(i))
+          i.bookmarkedImg = bookmarkedImg
+        }
+        else{
+          dispatch(removeItem(i))
+          i.bookmarkedImg = notBookmarked
+        }
       }
       return i
       
