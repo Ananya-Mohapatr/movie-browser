@@ -9,7 +9,8 @@ const FavSlice = createSlice({
           state.items.push(action.payload)
         },
         removeItem:(state,action)=>{
-            state.items.pop();
+            console.log("action",action.payload.id,"state",state.items)
+            state.items = state.items.filter(i=>i.id!==action.payload.id);
         },
         clearItems:(state,action)=>{
             state.items.length = 0

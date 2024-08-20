@@ -12,8 +12,6 @@ const Header = () => {
   const [movieList,setMovieList] = useState([])
   const [open,setOpen] = useState(false)
   const [overview,setOverview] = useState("")
-  var item = useSelector((store)=>store.slice.items)
-  console.log("items",item)
   const fetchMovieList = async()=>{
     await fetch(`https://api.themoviedb.org/3/trending/all/day?api_key=${API_READ_ACCESS_TOKEN}`,{
             method:'GET',
@@ -47,18 +45,23 @@ const Header = () => {
   const handleBookmark = (id)=>{
     // let newList = movieList.map((element)=>element.id == id ? {...element,bookmarked:!element.bookmarked,bookmarkedImg:element.bookmarked?bookmarkedImg:notBookmarked}:element)
     let newList = movieList.map((i)=>{
-      if(i.id === id ){
-        i.bookmarked = !i.bookmarked
-        if(i.bookmarked){
-          dispatch(addItems(i))
-          i.bookmarkedImg = bookmarkedImg
+      let obj = {...i}
+      if(obj.id === id ){
+        
+        obj.bookmarked = !obj.bookmarked
+        if(obj.bookmarked){
+          obj.bookmarkedImg = bookmarkedImg
+
+          dispatch(addItems(obj))
         }
         else{
-          dispatch(removeItem(i))
-          i.bookmarkedImg = notBookmarked
+          obj.bookmarkedImg = notBookmarked
+          dispatch(removeItem(obj))
+          
         }
+
       }
-      return i
+      return obj
       
     })
     console.log("newList",newList)

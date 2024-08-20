@@ -8,19 +8,22 @@ import search from '../assets/search.png'
 import advancedSearch from '../assets/advanced-search.png'
 import { useSelector } from 'react-redux'
 const MainBody = () => {
-  
+  var item = useSelector((store) => store.slice.items)
+  console.log("items", item)
   return (
     <div>
       <div className='header'>
-        <div style={{display:'flex'}}>
-<img style={{height:'50px'}} src={logo}/>
-<h5>MOVIE BROWSER</h5></div>
-<input type='search'/>
-<img src={search} className='searchImg'/>
-<img src={advancedSearch}/>
-<img src={notBookmarked} style={{height:'25px',float:'right',padding:'10px'}}/>
-    </div>
-        <Header/>
+        <div style={{ display: 'flex' }}>
+          <img style={{ height: '50px' }} src={logo} alt='logo' />
+          <h5>MOVIE BROWSER</h5></div>
+        <input type='search' />
+        <img src={search} className='searchImg' alt='search' />
+        <img src={advancedSearch} alt='search' />
+        <div>
+          <img src={notBookmarked} style={{ height: '25px', float: 'right', paddingTop: '10px',position:'absolute',left:'93%' }} alt='bookmark'/>
+          <p style={{position:'absolute',right:'66px',bottom:'144px'}}>{item.length}</p></div>
+      </div>
+      <Header />
     </div>
   )
 }
