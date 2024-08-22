@@ -21,7 +21,7 @@ const MainBody = () => {
         <img src={advancedSearch} alt='search' />
         <div>
           <img src={notBookmarked} style={{ height: '25px', float: 'right', paddingTop: '10px',position:'absolute',left:'93%' }} alt='bookmark'/>
-          <p style={{position:'absolute',right:'66px',bottom:'144px'}}>{item.length}</p></div>
+          <p style={{position:'absolute',right:'66px',top:'-15px'}}>{item.length}</p></div>
       </div>
       <Header />
     </div>
