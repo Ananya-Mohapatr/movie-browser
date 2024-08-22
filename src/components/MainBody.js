@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useContext} from 'react'
 import Header from './Header'
 import './Header.css'
 import './Mainbody.css'
@@ -7,9 +7,13 @@ import notBookmarked from '../assets/bookmark_2107915.png'
 import search from '../assets/search.png'
 import advancedSearch from '../assets/advanced-search.png'
 import { useSelector } from 'react-redux'
+import ThemeContext from '../utils/ThemeContext'
+import lightMode from '../assets/brightness_12080243.png'
+import darkMode from '../assets/moon_5370733.png'
 const MainBody = () => {
   var item = useSelector((store) => store.slice.items)
   console.log("items", item)
+  const {theme,handleTheme} = useContext(ThemeContext)
   return (
     <div>
       <div className='header'>
@@ -20,7 +24,8 @@ const MainBody = () => {
         <img src={search} className='searchImg' alt='search' />
         <img src={advancedSearch} alt='search' />
         <div>
-          <img src={notBookmarked} style={{ height: '25px', float: 'right', paddingTop: '10px',position:'absolute',left:'93%' }} alt='bookmark'/>
+          <img src={notBookmarked} style={{ height: '25px', paddingTop: '10px',position:'absolute',left:'80%' }} alt='bookmark'/>
+          <img src={theme != 'light'? lightMode : darkMode} onClick={handleTheme} style={{ height: '25px', float: 'right', paddingTop: '10px',position:'absolute',left:'93%',cursor:'pointer' }} alt='bookmark'/>
           <p style={{position:'absolute',right:'66px',top:'-15px'}}>{item.length}</p></div>
       </div>
       <Header />
